@@ -1,5 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 class ProductList extends React.Component {
   constructor() {
@@ -11,22 +12,23 @@ class ProductList extends React.Component {
 
   componentDidMount() {
     let component = this;
-    jQuery.getJSON("https://........herokuapp.com/products.json", function(data){
+    jQuery.getJSON("http://localhost:5000/", function(data){
                           //nog juiste url invoeren
       component.setState({
         products: data.products
       });
-      console.log(data.products);
+      console.log(this.state.products);
     });
   }
 
   render() {
+    console.log(this.state.products);
     return (
       <div>
         <ul>
           {this.state.products.map(function(product, i) {
             return(
-              <h3><Link to={`/products/${this.state.product.id}`}> {this.state.product.name} </Link></h3>
+              <h3><Link to={`/products/${product.id}`}> {product.name} </Link></h3>
             );
           }, this)}
         </ul>

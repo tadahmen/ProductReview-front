@@ -1,6 +1,7 @@
 import React from 'react';
 import jQuery from 'jquery';
 import { Link } from 'react-router';
+import ReviewList from './ReviewList';
 
 class Product extends React.Component {
   constructor() {
@@ -14,16 +15,13 @@ class Product extends React.Component {
     return this.props.params.productId;
   }
 
-  componentDidMount() {
-    this.fetchProduct();
-  }
 
   fetchProduct() {
-    let productId = this.props.params.productId;
+    let productId = this.props.params.productId; //this.props.params.productId
     let component = this;
 
 
-    jQuery.getJSON(" https://.........herokuapp.com/products/" + productId + ".json", function(data) {
+    jQuery.getJSON("http://localhost:5000/products/" + productId + ".json", function(data) {
                           //nog juiste url invoeren
       console.log(data);
       component.setState({
@@ -32,12 +30,17 @@ class Product extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.fetchProduct();
+  }
+
   render() {
     return (
       <div>
-        <h1> {this.state.name} /> </h1>
-        <p> Description: {this.state.description} </p>
-        <p> Get is here: {this.state.shop} </p>
+        <h1> {this.state.product.name} </h1>
+        <p> Description: {this.state.product.description} </p>
+        <p> Get it here: {this.state.product.shop} </p>
+        <ReviewList productId={this.props.params.productId} />
       </div>
     );
   }
