@@ -10,13 +10,20 @@ class ReviewForm extends React.Component {
     event.preventDefault();
 
     let component = this;   //?misschien in dit geval niet nodig, probeer wat gebeurt als verderop bij '.done', 'this' staat
+    let productId= this.props.productId;
+
+    // let review = {
+    //   name: this.refs.newReviewInputName.value,
+    //   rating: this.refs.newReviewInputRating.value,
+    //   reviewText: this.refs.newReviewInputText.value
+    // }
+    // console.log("review is:" + review)
 
     let name= this.refs.newReviewInputName.value;
-    let rating= this.refs.newReviewInputRating.value;
+    let rating= parseInt(this.refs.newReviewInputRating.value);
     let reviewText= this.refs.newReviewInputText.value;
-    let productId= this.props.productId;
-    console.log("product_id is:" + productId);    //to check
-    console.log("rating is:" + rating);
+    console.log("productId is:" + productId);    //to check
+    console.log("rating is:" + rating * 20);
     console.log("name is:" + name);
     console.log("reviewText is:" + reviewText);
 
@@ -24,23 +31,27 @@ class ReviewForm extends React.Component {
                           //bij react gebeuren dingen asynchroom, dus als je 'Forminput' laat wegschrijven in de ajaxrequest
                           //zou het kunnen dat deze nog niet is geupdate met de nieuwe inputgegevens maar dat de vorige gegevens er nog instaan (lege strings)
                           //hier dwing je react a.h.w. om de gegevens te updaten.
-      id: null,              //id: null,   //?waarom null?
-      product_id: productId,
+      id: null,              //?? moet id null zijn om het mogelijk te maken dat er een id aan wordt toegekend in de db?
       name: name,
-      rating: parseInt(rating),    //rating: rating,
-      review: reviewText
+      rating: rating,    //rating: rating,
+      reviewText: reviewText
     }
-    console.log("rating is:" + rating *10);   //to check if rating is understood as an integer
-    console.log("newReview.name is:" + newReview.name);
+    console.log("newReview is:" + newReview)
+    console.log("newReview.id is:" + newReview.id)
+    console.log("newReview.rating is:" + newReview.rating)  //to check if rating is understood as an integer
+    console.log("newReview.name is:" + newReview.name)
+    console.log("newReview.reviewText is:" + newReview.reviewText)
 
     jQuery.ajax({
       type: "POST",
-      url:`https://salty-reef-21530.herokuapp.com/products/${productId}/reviews.json`,
-      contentType: "application/json",
-      dataType: "json",
+      url:`http://localhost:5000/products/${productId}/reviews.json`,
       data: JSON.stringify({
         review: newReview
-      })
+      }),                             //het object is {review: {id: null, name: "somename", rating: anInteger, reviewText: someText}}
+                                      //zijn namen gelijk aan db namen in back-end?
+                                      //zijn datatypen gelijk aan db datatypen in de back-end?
+      contentType: "application/json",
+      dataType: "json"
     })
       .done(function(data) {
         component.props.onChange(); //hierdoor wordt de reviewlijst op het scherm geupdate
@@ -48,13 +59,14 @@ class ReviewForm extends React.Component {
                                                       //anders zou 'review: newreviews' (hierboven) door de asynchromiteit
                                                       //bij de volgende input alsnog de oude waarden kunnen opnemen
         component.refs.newReviewInputRating.value = "";  //?maybe this can't be an empty string (because datatype is integer)
-        component.refs.newReviewInputReviewText.value = "";
-        component.props.productId = "";  //?maybe this can't be an empty string (same as above)
+        component.refs.newReviewInputText.value = "";
       })
       .fail(function(error) {
         console.log(error)
       });
-    }
+  }
+
+
 
 render() {
   return(

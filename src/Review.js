@@ -11,7 +11,7 @@ class Review extends React.Component {
   componentDidMount() {
     this.setState({
       id: this.props.id,
-      product: this.props.product,
+      // product: this.props.product,
       name: this.props.name,
       rating: this.props.rating,
       reviewText: this.props.reviewText
@@ -21,6 +21,16 @@ class Review extends React.Component {
   updateRating(newRating) {
    console.log(newRating);
    this.syncState({rating: newRating});
+  }
+
+  updateName(newName) {
+   console.log(newName);
+   this.syncState({name: newName});
+  }
+
+  updateReviewText(newText) {
+   console.log(newText);
+   this.syncState({reviewText: newText});
   }
 
   syncState(updatedState) {
@@ -43,7 +53,7 @@ class Review extends React.Component {
 
      jQuery.ajax({
        type: "PUT",
-       url: `https://salty-reef-21530.herokuapp.com/products/${this.props.productId}/reviews/${this.props.id}.json`,
+       url: `http://localhost:5000/products/${this.props.productId}/reviews/${this.props.id}.json`,
        data: JSON.stringify({
            review: newState
        }),
@@ -55,10 +65,10 @@ class Review extends React.Component {
 
          component.setState({
            id: data.review.id,
-           product: this.review.product,
-           name: this.review.name,
-           rating: this.review.rating,
-           reviewText: this.review.reviewText
+          //  product: this.review.product,
+           name: data.review.name,
+           rating: data.review.rating,
+           reviewText: data.review.reviewText
           //  createdAt: data.review.created_at,
           //  updatedAt: data.review.updated_at
          });
@@ -73,25 +83,14 @@ class Review extends React.Component {
        });
    }
 
-//stukje hieronder is volgens mij op de een of andere manier dubbel
-  // syncState(updatedState) {
-  //   console.log("Syncing state!");
-  //
-  //   let component = this; render() {
-  //     return(
-  //       <div>
-  //         {/*<a href="#" className="delete task" onClick={this.deleteItem.bind(this)}>x</a>*/}
-  //         <EditableTextField value={this.state.rating} onChange={this.updateRating.bind(this)} {/*isEditable={!this.state.completed} */}/>
-  //       </div>
-  //     );
-  //   }
-  // }
 
   render() {
     return(
       <div>
         {/*<a href="#" className="delete task" onClick={this.deleteItem.bind(this)}>x</a>*/}
-        <EditableTextField value={this.state.title} onChange={this.updateTitle.bind(this)} isEditable={!this.state.completed} />
+        <EditableTextField value={this.state.name} onChange={this.updateName.bind(this)} />
+        <EditableTextField value={this.state.rating} onChange={this.updateRating.bind(this)} />
+        <EditableTextField value={this.state.reviewText} onChange={this.updateReviewText.bind(this)} />
       </div>
     );
   }

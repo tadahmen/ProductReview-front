@@ -21,7 +21,7 @@ class Product extends React.Component {
     let component = this;
 
 
-    jQuery.getJSON("https://salty-reef-21530.herokuapp.com/products/" + productId + ".json", function(data) {
+    jQuery.getJSON("http://localhost:5000/products/" + productId + ".json", function(data) {
                           //nog juiste url invoeren
       console.log(data);
       component.setState({
