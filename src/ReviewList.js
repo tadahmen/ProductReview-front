@@ -16,7 +16,7 @@ class ReviewList extends React.Component {
     let productId = this.props.productId;
     let component = this;
 
-    jQuery.getJSON("http://localhost:5000/products/" + productId + "/reviews", function(data) {
+    jQuery.getJSON("https://salty-reef-21530.herokuapp.com/products/" + productId + "/reviews", function(data) {
       console.log(data);
 
       component.setState({

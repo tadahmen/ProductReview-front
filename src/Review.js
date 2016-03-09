@@ -34,7 +34,8 @@ class Review extends React.Component {
        name: this.state.name,
        rating: this.state.rating,
        reviewText: this.state.reviewText
-     }, updatedState);2
+     }, updatedState);2     //?? hoort die '2' hier? Zoja, waarvoor is dit? en moet er ';' achter?
+
 
      this.setState(newState);
 
@@ -42,9 +43,9 @@ class Review extends React.Component {
 
      jQuery.ajax({
        type: "PUT",
-       url: `http://localhost:5000/products/${this.props.productId}/reviews/${this.props.id}.json`,
+       url: `https://salty-reef-21530.herokuapp.com/products/${this.props.productId}/reviews/${this.props.id}.json`,
        data: JSON.stringify({
-           review: newState   //moet volgens mij idd 'review' zijn, maar misschien toch reviewText
+           review: newState
        }),
        contentType: "application/json",
        dataType: "json"
