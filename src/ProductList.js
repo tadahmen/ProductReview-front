@@ -12,7 +12,7 @@ class ProductList extends React.Component {
 
   componentDidMount() {
     let component = this;
-    jQuery.getJSON("http://localhost:5000/", function(data){
+    jQuery.getJSON("https://salty-reef-21530.herokuapp.com/", function(data){
                           //juiste url invoeren
       component.setState({
         products: data.products

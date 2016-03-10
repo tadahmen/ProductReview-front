@@ -44,7 +44,7 @@ class ReviewForm extends React.Component {
 
     jQuery.ajax({
       type: "POST",
-      url:`http://localhost:5000/products/${productId}/reviews.json`,
+      url:`https://salty-reef-21530.herokuapp.com/products/${productId}/reviews.json`,
       data: JSON.stringify({
         review: newReview
       }),                             //het object is {review: {id: null, name: "somename", rating: anInteger, reviewText: someText}}

@@ -2,16 +2,16 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'source-map',      //5-7 different
   entry: [
     './src/index'
   ],
-  output: {
+  output: {                   //same
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
+  plugins: [              //15-25 different
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -24,7 +24,7 @@ module.exports = {
       }
     })
   ],
-  module: {
+  module: {                   //same
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],

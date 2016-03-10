@@ -53,7 +53,7 @@ class Review extends React.Component {
 
      jQuery.ajax({
        type: "PUT",
-       url: `http://localhost:5000/products/${this.props.productId}/reviews/${this.props.id}.json`,
+       url: `https://salty-reef-21530.herokuapp.com/products/${this.props.productId}/reviews/${this.props.id}.json`,
        data: JSON.stringify({
            review: newState
        }),
