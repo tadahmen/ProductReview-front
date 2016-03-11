@@ -1,13 +1,1 @@
-.bio {
-  @extend .row;
-  @extend .text-muted;
 
-  .avatar {
-    @extend .col-sm-2;
-
-    img {
-      @extend .img-responsive;
-      @extend .img-circle;
-    }
-  }
-}
