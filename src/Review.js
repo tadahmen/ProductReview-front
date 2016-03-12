@@ -6,6 +6,9 @@ import EditableTextField from './EditableTextField';
 class Review extends React.Component {
   constructor() {
     super();
+    this.state = {
+      review: {}    //?? is necessary?
+    };
   }
 
   componentDidMount() {
@@ -14,8 +17,9 @@ class Review extends React.Component {
       // product: this.props.product,
       name: this.props.name,
       rating: this.props.rating,
-      reviewText: this.props.reviewText
+      reviewText: this.props.reviewText,
     });
+    console.log(name)                     //to check
   }
 
   updateRating(newRating) {
@@ -87,10 +91,12 @@ class Review extends React.Component {
   render() {
     return(
       <div>
+        <p>{this.props.number}</p>
         {/*<a href="#" className="delete task" onClick={this.deleteItem.bind(this)}>x</a>*/}
-        <EditableTextField value={this.state.name} onChange={this.updateName.bind(this)} />
-        <EditableTextField value={this.state.rating} onChange={this.updateRating.bind(this)} />
-        <EditableTextField value={this.state.reviewText} onChange={this.updateReviewText.bind(this)} />
+        <p>name: <EditableTextField value={this.state.name} onChange={this.updateName.bind(this)} /></p>
+        <p>rating: <EditableTextField value={this.state.rating} onChange={this.updateRating.bind(this)} /></p>
+        <p>review: <EditableTextField value={this.state.reviewText} onChange={this.updateReviewText.bind(this)} /></p>
+        <br/>
       </div>
     );
   }

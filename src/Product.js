@@ -1,37 +1,27 @@
 import React from 'react';
 import jQuery from 'jquery';
-import { Link } from 'react-router';
+import { Link } from 'react-router';    //necessary?
 import ReviewList from './ReviewList';
 
 class Product extends React.Component {
   constructor() {
     super();
+
     this.state = {
       product: {}
     };
   }
 
-  getProductId(){
-    return this.props.params.productId;
-  }
-
-
-  fetchProduct() {
-    let productId = this.props.params.productId; //this.props.params.productId
+  componentDidMount() {
+    let productId = this.props.params.productId;
     let component = this;
 
-
     jQuery.getJSON("https://salty-reef-21530.herokuapp.com/products/" + productId + ".json", function(data) {
-                          //nog juiste url invoeren
-      console.log(data);
+      console.log(data);  //??'data' is niet expliciet gedefinieerd. Staat het automatisch voor de opgehaalde json?
       component.setState({
         product: data.product
       });
     });
-  }
-
-  componentDidMount() {
-    this.fetchProduct();
   }
 
   render() {
