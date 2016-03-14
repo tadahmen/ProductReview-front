@@ -23,11 +23,12 @@ class ProductList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="component">
         <ul>
+        <h1 className="page-title">Soundwave</h1>
           {this.state.products.map(function(product, i) {
             return(
-              <h3><Link to={`/products/${product.id}`}> {product.name} </Link></h3>
+              <h3> <Link to={`/products/${product.id}`} className="productnames"> {product.name} </Link></h3>
             );
           }, this)}
         </ul>

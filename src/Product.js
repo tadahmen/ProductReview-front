@@ -26,11 +26,19 @@ class Product extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1> {this.state.product.name} </h1>
-        <p> Description: {this.state.product.description} </p>
-        <p> Get it here: {this.state.product.shop} </p>
-        <ReviewList productId={this.props.params.productId} />
+      <div className="component">
+        <h1 className="product-title"> {this.state.product.name} </h1>
+        <div className="content">
+          <section className="product-info">
+            <h4 className="sub-heading">Product-info</h4>
+            <p>Description: {this.state.product.description} </p>
+            <p>Get it here: {this.state.product.shop} </p>
+          </section>
+          <section className="reviews">
+            <h4 className="sub-heading"> Reviews </h4>
+            <ReviewList productId={this.props.params.productId} />
+          </section>
+        </div>
       </div>
     );
   }

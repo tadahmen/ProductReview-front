@@ -38,23 +38,27 @@ class ReviewList extends React.Component {
     return (
       <div>
       {console.log(this.state.reviews) /* to check*/}
-        <h3> Reviews </h3>
           { this.state.ratingSum = 0,
             this.state.reviews.map(function(review, i) {
               !isNaN(review.rating) ? this.state.ratingSum += review.rating : true
           }, this)}
-        <h4>{this.state.counts == 0 ? "Be the first who rates this product" : "average rating: " + this.state.ratingSum/this.state.counts}</h4>
-        <br/>
-        <p> write a review </p>
-        <ReviewForm onChange={this.loadReviews.bind(this)} productId={this.props.productId} />
-        <ul>
-          {this.state.reviews.map(function(review, i) {     /* ??  waarvoor is de i?*/
-            i += 1
-            return(
-              <Review key={review.id} id={review.id} name={review.name} rating={review.rating} reviewText={review.reviewText} productId={review.product_id} number={i} onChange={this.loadReviews.bind(this)} />
-            );
-          }, this)}   {/* ??  waartoe dient 'this'?*/}
-        </ul>
+        <div className="reviews-and-form">
+          <section className="reviews-incl-average">
+            <h4 className="average-rating">{this.state.counts == 0 ? "Be the first who rates this product" : "average rating: " + this.state.ratingSum/this.state.counts}</h4>
+            <div className="reviews">
+              {this.state.reviews.map(function(review, i) {     /* ??  waarvoor is de i?*/
+                i += 1
+                return(
+                  <Review key={review.id} id={review.id} name={review.name} rating={review.rating} reviewText={review.reviewText} productId={review.product_id} number={i} onChange={this.loadReviews.bind(this)} />
+                );
+              }, this)}   {/* ??  waartoe dient 'this'?*/}
+            </div>
+          </section>
+          <section className="review-form">
+            <h4 className="form-header"> write a review </h4>
+            <ReviewForm onChange={this.loadReviews.bind(this)} productId={this.props.productId} />
+          </section>
+        </div>
       </div>
     );
   }

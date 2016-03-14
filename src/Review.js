@@ -90,13 +90,10 @@ class Review extends React.Component {
 
   render() {
     return(
-      <div>
-        <p>{this.props.number}</p>
+      <div className="review">
         {/*<a href="#" className="delete task" onClick={this.deleteItem.bind(this)}>x</a>*/}
-        <p>name: <EditableTextField value={this.state.name} onChange={this.updateName.bind(this)} /></p>
-        <p>rating: <EditableTextField value={this.state.rating} onChange={this.updateRating.bind(this)} /></p>
-        <p>review: <EditableTextField value={this.state.reviewText} onChange={this.updateReviewText.bind(this)} /></p>
-        <br/>
+        <p>{this.state.name} rated <span className="rating">{this.state.rating}</span> stars </p>
+        <p>{this.state.reviewText} </p>
       </div>
     );
   }

@@ -67,7 +67,7 @@ render() {
     <div>
         <form onSubmit={this.createReview.bind(this)}>
             <input type="text" ref="newReviewInputName" placeholder="name" />
-            <br/><br/>
+            <br/>
             <input type="string" ref="newReviewInputRating" placeholder="rate it (scale 1-5)" />
             {/*<table>    //dit hele deel is om rating via radio buttons te doen, maar werkt niet goed
               <th>
@@ -86,7 +86,8 @@ render() {
             </table>*/}
             <br/>
             <textarea ref="newReviewInputText" placeholder="write a review" />
-            <button type="submit">submit</button>
+            <br/>
+            <button className="submit-button" type="submit">submit</button>
         </form>
       </div>
     );
