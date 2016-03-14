@@ -1,0 +1,8 @@
+.submit-button {
+  @extend .btn-default;
+  background-color: transparentize(#fff, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  border-style: outset;
+  border-color: transparentize(white, 0.3);
+}

@@ -9,21 +9,15 @@ class ReviewForm extends React.Component {
   createReview(event) {
     event.preventDefault();
 
-    let component = this;   //?misschien in dit geval niet nodig, probeer wat gebeurt als verderop bij '.done', 'this' staat
+    let component = this;   //because at .done after Ajax request, 'this' won't refer to the component
     let productId= this.props.productId;
 
-    // let review = {
-    //   name: this.refs.newReviewInputName.value,
-    //   rating: this.refs.newReviewInputRating.value,
-    //   reviewText: this.refs.newReviewInputText.value
-    // }
-    // console.log("review is:" + review)
-
     let name= this.refs.newReviewInputName.value;
-    let rating= parseInt(this.refs.newReviewInputRating.value);
+    let rating= parseInt(this.refs.newReviewInputRating.value);  //? parseInt might not be necessary
     let reviewText= this.refs.newReviewInputText.value;
-    console.log("productId is:" + productId);    //to check
-    console.log("rating is:" + rating * 20);
+
+    console.log("productId is:" + productId);    //to check if the values of the form where caught
+    console.log("rating is:" + rating * 20);     //tried rating*10 to check if rating is understood as an integer
     console.log("name is:" + name);
     console.log("reviewText is:" + reviewText);
 
@@ -33,12 +27,12 @@ class ReviewForm extends React.Component {
                           //hier dwing je react a.h.w. om de gegevens te updaten.
       id: null,              //?? moet id null zijn om het mogelijk te maken dat er een id aan wordt toegekend in de db?
       name: name,
-      rating: rating,    //rating: rating,
+      rating: rating,
       reviewText: reviewText
     }
     console.log("newReview is:" + newReview)
-    console.log("newReview.id is:" + newReview.id)
-    console.log("newReview.rating is:" + newReview.rating)  //to check if rating is understood as an integer
+    console.log("newReview.id is:" + newReview.id)  //to check if the new values were taken
+    console.log("newReview.rating is:" + newReview.rating)
     console.log("newReview.name is:" + newReview.name)
     console.log("newReview.reviewText is:" + newReview.reviewText)
 
@@ -48,8 +42,8 @@ class ReviewForm extends React.Component {
       data: JSON.stringify({
         review: newReview
       }),                             //het object is {review: {id: null, name: "somename", rating: anInteger, reviewText: someText}}
-                                      //zijn namen gelijk aan db namen in back-end?
-                                      //zijn datatypen gelijk aan db datatypen in de back-end?
+                                      //check of namen gelijk zijn aan db namen in back-end
+                                      //check of datatypen gelijk zijn aan db datatypen in de back-end
       contentType: "application/json",
       dataType: "json"
     })
@@ -72,27 +66,28 @@ render() {
   return(
     <div>
         <form onSubmit={this.createReview.bind(this)}>
-              <input type="text" ref="newReviewInputName" placeholder="name" />
-              <br/><br/>
-              <input type="string" ref="newReviewInputRating" placeholder="rate it (scale 1-5)" />
-              {/*<table>    //dit hele deel is om rating via radio buttons te doen, maar werkt niet goed
-                <th>
-                  <td></td><td> 1 </td><td> 2 </td><td> 3 </td><td> 4 </td><td> 5 </td>
-                </th>
-                <tbody>
-                  <tr>
-                    <td>rate it:</td>
-                    <td><input type="radio" ref="newReviewInputRating" name="rating" value="1"/></td>
-                    <td><input type="radio" ref="newReviewInputRating" name="rating" value="2"/></td>
-                    <td><input type="radio" ref="newReviewInputRating" name="rating" value="3"/></td>
-                    <td><input type="radio" ref="newReviewInputRating" name="rating" value="4"/></td>
-                    <td><input type="radio" ref="newReviewInputRating" name="rating" value="5"/></td>
-                  </tr>
-                </tbody>
-              </table>*/}
-              <br/>
-              <textarea ref="newReviewInputText" placeholder="write a review" /> {/*?maybe this should have an end tag*/}
-              <button type="submit">submit</button>
+            <input type="text" ref="newReviewInputName" placeholder="name" />
+            <br/>
+            <input type="string" ref="newReviewInputRating" placeholder="rate it (scale 1-5)" />
+            {/*<table>    //dit hele deel is om rating via radio buttons te doen, maar werkt niet goed
+              <th>
+                <td></td><td> 1 </td><td> 2 </td><td> 3 </td><td> 4 </td><td> 5 </td>
+              </th>
+              <tbody>
+                <tr>
+                  <td>rate it:</td>
+                  <td><input type="radio" ref="newReviewInputRating" name="rating" value="1"/></td>
+                  <td><input type="radio" ref="newReviewInputRating" name="rating" value="2"/></td>
+                  <td><input type="radio" ref="newReviewInputRating" name="rating" value="3"/></td>
+                  <td><input type="radio" ref="newReviewInputRating" name="rating" value="4"/></td>
+                  <td><input type="radio" ref="newReviewInputRating" name="rating" value="5"/></td>
+                </tr>
+              </tbody>
+            </table>*/}
+            <br/>
+            <textarea ref="newReviewInputText" placeholder="write a review" />
+            <br/>
+            <button className="submit-button" type="submit">submit</button>
         </form>
       </div>
     );

@@ -1,0 +1,30 @@
+body {
+      background: #37ffb0 url("http://www.modsats.com/wp-content/uploads/2016/02/American-Talk-Radio-Stations-1.png") no-repeat fixed center;
+    }
+
+.component {
+
+  .page-title {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 100px;
+    // text-align: center;
+  }
+
+  .productnames {
+    @extend .btn-default;
+    @extend .col-md-11;
+    background-color: transparentize(#fff, 0.5);
+    padding: 10px;
+    // border: 1px solid #b65;
+    border-radius: 8px;
+    border-style: outset;
+    border-color: transparentize(white, 0.3);
+    margin-top: 8px;
+  }
+}
+
+// div {
+//   {color: green}
+// }
