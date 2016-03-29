@@ -1,5 +1,5 @@
 .review {
-  background-color: transparentize(#fff, 0.1);
+  background-color: transparentize(#fff, 0.2);
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 10px;

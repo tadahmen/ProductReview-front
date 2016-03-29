@@ -1,5 +1,3 @@
-.component {
-  margin-left:120px;
 
   .product-title {
     color: white;
@@ -7,6 +5,20 @@
     font-weight: bolder;
     font-size: 100px;
   }
+
+  .nav-home {
+        float: left;
+        position: fixed;
+        @extend .btn-default;
+        color: orange;
+        font-weight: bolder;
+        background-color: transparentize(#fff, 0.4);
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        border-style: outset;
+        border-color: transparentize(white, 0.3);
+      }
 
   .content {
     @extend .row;
@@ -34,4 +46,3 @@
       // padding: 10px;
     }
   }
-}

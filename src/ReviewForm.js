@@ -23,7 +23,7 @@ class ReviewForm extends React.Component {
 
     let newReview = {     //deze tussenstap is nodig om zeker te weten dat de nieuwe input wordt weggeschreven in de ajax request
                           //bij react gebeuren dingen asynchroom, dus als je 'Forminput' laat wegschrijven in de ajaxrequest
-                          //zou het kunnen dat deze nog niet is geupdate met de nieuwe inputgegevens maar dat de vorige gegevens er nog instaan (lege strings)
+                          //zou het kunnen dat deze nog niet is geupdate met de nieuwe inputgegevens maar dat de vorige gegevens er nog instaan
                           //hier dwing je react a.h.w. om de gegevens te updaten.
       id: null,              //?? moet id null zijn om het mogelijk te maken dat er een id aan wordt toegekend in de db?
       name: name,
@@ -66,9 +66,9 @@ render() {
   return(
     <div>
         <form onSubmit={this.createReview.bind(this)}>
-            <input type="text" ref="newReviewInputName" placeholder="name" />
+            <input type="text" ref="newReviewInputName" placeholder="name" className="form-fields"/>
             <br/>
-            <input type="string" ref="newReviewInputRating" placeholder="rate it (scale 1-5)" />
+            <input type="string" ref="newReviewInputRating" placeholder="rate it (scale 1-5)" className="form-fields"/>
             {/*<table>    //dit hele deel is om rating via radio buttons te doen, maar werkt niet goed
               <th>
                 <td></td><td> 1 </td><td> 2 </td><td> 3 </td><td> 4 </td><td> 5 </td>
@@ -85,7 +85,7 @@ render() {
               </tbody>
             </table>*/}
             <br/>
-            <textarea ref="newReviewInputText" placeholder="write a review" />
+            <textarea ref="newReviewInputText" placeholder="write a review" className="form-fields"/>
             <br/>
             <button className="submit-button" type="submit">submit</button>
         </form>

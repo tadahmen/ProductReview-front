@@ -26,6 +26,8 @@ class Product extends React.Component {
 
   render() {
     return (
+     <div>
+     <Link to={`/`}><button className="nav-home"> home </button></Link>
       <div className="component">
         <h1 className="product-title"> {this.state.product.name} </h1>
         <div className="content">
@@ -40,6 +42,7 @@ class Product extends React.Component {
           </section>
         </div>
       </div>
+     </div>
     );
   }
 }

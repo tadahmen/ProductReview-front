@@ -7,21 +7,22 @@
 
 .reviews-and-form {
   @extend .row;
+
   .reviews-incl-average {
-    @extend .col-md-8;
+    @extend .col-md-7;
     padding: 0px;
     .average-rating {
       font-size: 20px;
     }
-
     .reviews {
       padding: 0px;
       font-weight: bold;
     }
   }
+
   .review-form {
     padding: 0px;
-    @extend .col-md-4;
+    @extend .col-md-5;
     .form-header {
       font-size: 20px;
     }

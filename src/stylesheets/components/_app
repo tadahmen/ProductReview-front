@@ -1,3 +1,13 @@
+body {
+margin: 0px;
+padding: 0px
+}                 //to avoid visual differences between browsers when using 'float'.
+
 .app {
   font-family: Arial, Helvetica, sans-serif;
+
+  .component {
+    @extend .col-md-11;
+    margin-left: 100px;
+  }
 }
